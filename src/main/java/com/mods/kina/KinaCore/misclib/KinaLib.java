@@ -1,60 +1,57 @@
 package com.mods.kina.KinaCore.misclib;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.EnumDifficulty;
-import net.minecraft.world.World;
-
-import java.util.Random;
-
 public class KinaLib{
-    public World world;
+    /*public World world;
     public static KinaLib lib;
     public static int h;
 
-    /**
+    *//**
      Sets the block ID and metadata at a given location. Args: X, Y, Z, new block ID, new metadata, flags. Flag 1 will
      cause a block update. Flag 2 will send the change to clients (you almost always want pblockItem). Flag 4 prevents the
      block from being re-rendered, if pblockItem is a client world. Flags can be added together.
-     */
-    public static boolean setOnBlock(int x, int y, int z, Block block, World world, EntityPlayer player, ItemStack itemStack, int side, int metadata, int flags){
-        if(side == 0){
-            --y;
+     *//*
+    public static boolean setOnBlock(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        IBlockState iblockstate = worldIn.getBlockState(pos);
+        Block block = iblockstate.getBlock();
+
+        if (block == Blocks.snow_layer && (Integer) iblockstate.getValue(BlockSnow.LAYERS_PROP) < 1)
+        {
+            side = EnumFacing.UP;
+        }
+        else if (!block.isReplaceable(worldIn, pos))
+        {
+            pos = pos.offset(side);
         }
 
-        if(side == 1){
-            ++y;
-        }
-
-        if(side == 2){
-            --z;
-        }
-
-        if(side == 3){
-            ++z;
-        }
-
-        if(side == 4){
-            --x;
-        }
-
-        if(side == 5){
-            ++x;
-        }
-
-        if(!player.canPlayerEdit(x, y, z, side, itemStack)){
+        if (stack.stackSize == 0)
+        {
             return false;
-        }else{
-            world.setBlock(x, y, z, block, metadata, flags);
+        }
+        else if (!playerIn.func_175151_a(pos, side, stack))
+        {
+            return false;
+        }
+        else if (pos.getY() == 255 && ((ItemBlock)stack.getItem()).block.getMaterial().isSolid())
+        {
+            return false;
+        }
+        else if (worldIn.canBlockBePlaced(((ItemBlock)stack.getItem()).block, pos, false, side, (Entity)null, stack))
+        {
+            int i = ((ItemBlock)stack.getItem()).getMetadata(stack.getMetadata());
+            IBlockState iblockstate1 = ((ItemBlock)stack.getItem()).block.onBlockPlaced(worldIn, pos, side, hitX, hitY, hitZ, i, playerIn);
+
+            if (((ItemBlock)stack.getItem()).placeBlockAt(stack, playerIn, worldIn, pos, side, hitX, hitY, hitZ, iblockstate1))
+            {
+                worldIn.playSoundEffect((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), ((ItemBlock)stack.getItem()).block.stepSound.getPlaceSound(), (((ItemBlock)stack.getItem()).block.stepSound.getVolume() + 1.0F) / 2.0F, ((ItemBlock)stack.getItem()).block.stepSound.getFrequency() * 0.8F);
+                --stack.stackSize;
+            }
+
             return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -159,6 +156,18 @@ public class KinaLib{
         }
         return true;
     }
+
+    *//*public static ItemStack copyItemStackWithoutStackSize(ItemStack stack){
+        ItemStack itemstack = new ItemStack(stack.getItem(), stack.stackSize, stack.getItemDamage());
+
+        if (stack.stackTagCompound != null)
+        {
+            itemstack.stackTagCompound = (NBTTagCompound)stack.stackTagCompound.copy();
+        }
+
+        return itemstack;
+    }*//*
+    
     public int getH(){
         return h;
     }
@@ -176,5 +185,5 @@ public class KinaLib{
     }
     public boolean isBlock(EntityItem entityItem){
         return isBlock(entityItem.getEntityItem());
-    }
+    }*/
 }

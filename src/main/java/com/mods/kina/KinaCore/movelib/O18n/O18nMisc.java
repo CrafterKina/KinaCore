@@ -8,12 +8,14 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class O18nMisc{
-    public CreativeTabs getTab(String s){
+    private CreativeTabs getTab(String s){
         if(s.equalsIgnoreCase("Block")) return CreativeTabs.tabBlock;
         else if(s.equalsIgnoreCase("Brewing")) return CreativeTabs.tabBrewing;
         else if(s.equalsIgnoreCase("Combat")) return CreativeTabs.tabCombat;
@@ -24,7 +26,8 @@ public class O18nMisc{
         else if(s.equalsIgnoreCase("Redstone")) return CreativeTabs.tabRedstone;
         else if(s.equalsIgnoreCase("Tools")) return CreativeTabs.tabTools;
         else if(s.equalsIgnoreCase("Transport")) return CreativeTabs.tabTransport;
-        else return (CreativeTabs)getClassFromName(s);
+            //else return (CreativeTabs)getClassFromName(s);
+        else return null;
     }
 
     public Block.SoundType getSound(String s){
@@ -82,9 +85,9 @@ public class O18nMisc{
             else if(s.equalsIgnoreCase("Weakness")) return Potion.weakness.id;
             else if(s.equalsIgnoreCase("Poison")) return Potion.poison.id;
             else if(s.equalsIgnoreCase("Wither")) return Potion.wither.id;
-            else if(s.equalsIgnoreCase("HealthBoost")) return Potion.field_76434_w.id;
-            else if(s.equalsIgnoreCase("Absorption")) return Potion.field_76444_x.id;
-            else if(s.equalsIgnoreCase("Saturation")) return Potion.field_76443_y.id;
+            else if(s.equalsIgnoreCase("HealthBoost")) return Potion.field_180152_w.id;
+            else if(s.equalsIgnoreCase("Absorption")) return Potion.absorption.id;
+            else if(s.equalsIgnoreCase("Saturation")) return Potion.saturation.id;
             else return 0;
         }
     }
@@ -125,5 +128,22 @@ public class O18nMisc{
 
     public String[] getSet2(String s){
         return s.split(",");
+    }
+
+    public CreativeTabs getTab(final String t, final String i){
+        if(getTab(t) != null){
+            return getTab(t);
+        }else{
+            return new CreativeTabs(t){
+                public Item getTabIconItem(){
+                    return Item.getByNameOrId(i);
+                }
+
+                @SideOnly(Side.CLIENT)
+                public String getTranslatedTabLabel(){
+                    return t;
+                }
+            };
+        }
     }
 }

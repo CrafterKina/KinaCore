@@ -1,11 +1,12 @@
 package com.mods.kina.KinaCore.movelib.O18n;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
-import static com.mods.kina.KinaCore.movelib.O18n.O18nField.*;
+import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.io.File;
+
+import static com.mods.kina.KinaCore.movelib.O18n.O18nField.*;
 
 public class O18nConfig{
     public static void makeConfig(FMLPreInitializationEvent event){

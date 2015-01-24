@@ -1,8 +1,9 @@
 package com.mods.kina.KinaCore.movelib.O18n;
 
-import cpw.mods.fml.common.event.FMLInitializationEvent;
 import net.minecraft.block.Block;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
+
 import static com.mods.kina.KinaCore.movelib.O18n.O18nField.*;
 
 public class O18nRegister {
@@ -19,14 +20,14 @@ public class O18nRegister {
             if(!lightLevel.isEmpty()) for(String a : misc.getSet1(lightLevel))
                 Block.getBlockFromName(misc.getSet2(a)[0]).setLightLevel(Float.valueOf(misc.getSet2(a)[1] + "f"));
             if(!creativeTab.isEmpty()) for(String a : misc.getSet1(creativeTab))
-                Block.getBlockFromName(misc.getSet2(a)[0]).setCreativeTab(misc.getTab(misc.getSet2(a)[1]));
+                Block.getBlockFromName(misc.getSet2(a)[0]).setCreativeTab(misc.getTab(misc.getSet2(a)[1], misc.getSet2(a)[0]));
             if(!stepSound.isEmpty()) for(String a : misc.getSet1(stepSound))
                 Block.getBlockFromName(misc.getSet2(a)[0]).setStepSound(misc.getSound(misc.getSet2(a)[1]));
             if(!harvestLevelB.isEmpty()) for(String a : misc.getSet1(harvestLevelB))
                 Block.getBlockFromName(misc.getSet2(a)[0]).setHarvestLevel(misc.getSet2(a)[1], Integer.valueOf(misc.getSet2(a)[2]));
             //Item
             if(!creativeTabI.isEmpty()) for(String a : misc.getSet1(creativeTabI))
-                misc.getItemFromName(misc.getSet2(a)[0]).setCreativeTab(misc.getTab(misc.getSet2(a)[1]));
+                misc.getItemFromName(misc.getSet2(a)[0]).setCreativeTab(misc.getTab(misc.getSet2(a)[1], misc.getSet2(a)[0]));
             if(!maxDamage.isEmpty()) for(String a : misc.getSet1(maxDamage))
                 misc.getItemFromName(misc.getSet2(a)[0]).setMaxDamage(Integer.valueOf(misc.getSet2(a)[1]));
             if(!maxStackSize.isEmpty()) for(String a : misc.getSet1(maxStackSize))
