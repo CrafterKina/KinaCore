@@ -29,12 +29,12 @@ public class O18nConfig{
             full3D = config.get(ITEM, "HoldToolLike_Item", "", "set hold tool like \"Item;\"").getString();
             alwaysEdible = config.get(FOOD, "AlwaysEdible_Food", "", "set always edible \"Food;\"").getString();
             potionEffectF = config.get(FOOD, "PotionEffect_Food", "", "set potion effect \"Food,Effect(name or id),Duration,AmplifierLevel,Probability;\"Effects=(Speed,Slowness,Haste,MiningFatigue,Strength,InstantHealth,InstantDamage,JumpBoost,Nausea,Regeneration,Resistance,FireResistance,WaterBreathing,Invisibility,Blindness,NightVision,Hunger,Weakness,Poison,Wither,HealthBoost,Absorption,Saturation)").getString();
-            fluidLuminosity = config.get(FLUID, "LightLevel_Fluid", "", "set light level \"Fluid,Level\"").getString();
-            fluidDensity = config.get(FLUID, "Density_Fluid", "", "set density \"Fluid,Level\"").getString();
-            fluidTemperature = config.get(FLUID, "Temperature_Fluid", "", "set temperature \"Fluid,Degree\"").getString();
-            fluidViscosity = config.get(FLUID, "Viscosity_Fluid", "", "set viscosity \"Fluid,Level\"").getString();
-            oreBlock = config.get(ORE, "Registry_Block", "", "registry OreDictionary \"Block,Name\"").getString();
-            oreItem = config.get(ORE, "Registry_Item", "", "registry OreDictionary \"Item,Name\"").getString();
+            fluidLuminosity = config.get(FLUID, "LightLevel_Fluid", "", "set light level \"Fluid,Level;\"").getString();
+            fluidDensity = config.get(FLUID, "Density_Fluid", "", "set density \"Fluid,Level;\"").getString();
+            fluidTemperature = config.get(FLUID, "Temperature_Fluid", "", "set temperature \"Fluid,Degree;\"").getString();
+            fluidViscosity = config.get(FLUID, "Viscosity_Fluid", "", "set viscosity \"Fluid,Level;\"").getString();
+            oreBlock = config.get(ORE, "Registry_Block", "", "registry OreDictionary \"Block,Name;\"").getString();
+            oreItem = config.get(ORE, "Registry_Item", "", "registry OreDictionary \"Item,Name;\"").getString();
         } catch(Exception e){
             FMLLog.severe("Error Message");
         }finally{
