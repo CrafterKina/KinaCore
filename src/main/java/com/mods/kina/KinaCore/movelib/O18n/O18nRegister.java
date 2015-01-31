@@ -1,8 +1,9 @@
 package com.mods.kina.KinaCore.movelib.O18n;
 
-import cpw.mods.fml.common.event.FMLInitializationEvent;
 import net.minecraft.block.Block;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
+
 import static com.mods.kina.KinaCore.movelib.O18n.O18nField.*;
 
 public class O18nRegister {

@@ -82,9 +82,9 @@ public class O18nMisc{
             else if(s.equalsIgnoreCase("Weakness")) return Potion.weakness.id;
             else if(s.equalsIgnoreCase("Poison")) return Potion.poison.id;
             else if(s.equalsIgnoreCase("Wither")) return Potion.wither.id;
-            else if(s.equalsIgnoreCase("HealthBoost")) return Potion.field_76434_w.id;
-            else if(s.equalsIgnoreCase("Absorption")) return Potion.field_76444_x.id;
-            else if(s.equalsIgnoreCase("Saturation")) return Potion.field_76443_y.id;
+            else if(s.equalsIgnoreCase("HealthBoost")) return Potion.field_180152_w.id;
+            else if(s.equalsIgnoreCase("Absorption")) return Potion.absorption.id;
+            else if(s.equalsIgnoreCase("Saturation")) return Potion.saturation.id;
             else return 0;
         }
     }
