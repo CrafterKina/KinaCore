@@ -10,7 +10,7 @@ import static com.mods.kina.KinaCore.movelib.O18n.O18nField.*;
 
 public class O18nConfig{
     public static void makeConfig(FMLPreInitializationEvent event){
-        Configuration config = new Configuration(new File(event.getModConfigurationDirectory(), "OverwriteInformationMod.cfg"));
+        Configuration config = new Configuration(new File(event.getModConfigurationDirectory() + "/kina", "OverwriteInformationMod.cfg"));
         try{
             config.load();
             isOK = config.get("Overwrite", "isEnable", true).getBoolean(true);
