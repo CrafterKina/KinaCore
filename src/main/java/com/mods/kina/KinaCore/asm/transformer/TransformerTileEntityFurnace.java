@@ -22,7 +22,7 @@ public class TransformerTileEntityFurnace implements IClassTransformer, Opcodes{
     private ClassVisitor furnaceClassVisitor(ClassWriter writer){
         return new ClassVisitor(ASM4, writer){
             public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions){
-                String mappedName = FMLDeobfuscatingRemapper.INSTANCE.mapFieldName(TARGET, name, desc);
+                String mappedName = FMLDeobfuscatingRemapper.INSTANCE.mapFieldName(FMLDeobfuscatingRemapper.INSTANCE.unmap(TARGET.replace('.', '/')).replace('/', '.'), name, desc);
                 if("update".equals(mappedName) && "()V".equals(desc))
                     return onUpdateMethodVisitor(api, super.visitMethod(access, name, desc, signature, exceptions));
                 if("smeltItem".equals(mappedName) && "()V".equals(desc))

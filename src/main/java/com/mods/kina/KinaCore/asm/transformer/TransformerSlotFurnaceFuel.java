@@ -22,7 +22,7 @@ public class TransformerSlotFurnaceFuel implements IClassTransformer, Opcodes{
     private ClassVisitor slotClassVisitor(ClassWriter writer){
         return new ClassVisitor(ASM4, writer){
             public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions){
-                String mappedName = FMLDeobfuscatingRemapper.INSTANCE.mapFieldName(TARGET, name, desc);
+                String mappedName = FMLDeobfuscatingRemapper.INSTANCE.mapFieldName(FMLDeobfuscatingRemapper.INSTANCE.unmap(name.replace('.', '/')).replace('/', '.'), name, desc);
                 if("isBucket".equals(mappedName))
                     return isBucketMethodVisitor(api, super.visitMethod(access, name, desc, signature, exceptions));
                 return super.visitMethod(access, name, desc, signature, exceptions);
