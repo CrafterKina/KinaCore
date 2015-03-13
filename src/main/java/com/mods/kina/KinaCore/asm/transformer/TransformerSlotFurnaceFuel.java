@@ -1,6 +1,7 @@
 package com.mods.kina.KinaCore.asm.transformer;
 
 import net.minecraft.launchwrapper.IClassTransformer;
+import net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import org.objectweb.asm.*;
 
 public class TransformerSlotFurnaceFuel implements IClassTransformer, Opcodes{
@@ -21,7 +22,8 @@ public class TransformerSlotFurnaceFuel implements IClassTransformer, Opcodes{
     private ClassVisitor slotClassVisitor(ClassWriter writer){
         return new ClassVisitor(ASM4, writer){
             public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions){
-                if("isBucket".equals(name))
+                String mappedName = FMLDeobfuscatingRemapper.INSTANCE.mapFieldName(TARGET, name, desc);
+                if("isBucket".equals(mappedName))
                     return isBucketMethodVisitor(api, super.visitMethod(access, name, desc, signature, exceptions));
                 return super.visitMethod(access, name, desc, signature, exceptions);
             }
@@ -39,7 +41,8 @@ public class TransformerSlotFurnaceFuel implements IClassTransformer, Opcodes{
             }
 
             public void visitFieldInsn(int opcode, String owner, String name, String desc){
-                if(opcode == GETSTATIC && "net/minecraft/init/Items".equals(owner) && "bucket".equals(name)) return;
+                if(opcode == GETSTATIC && "net/minecraft/init/Items".equals(owner) && "bucket".equals(FMLDeobfuscatingRemapper.INSTANCE.mapFieldName(owner, name, desc)))
+                    return;
                 super.visitFieldInsn(opcode, owner, name, desc);
             }
 
