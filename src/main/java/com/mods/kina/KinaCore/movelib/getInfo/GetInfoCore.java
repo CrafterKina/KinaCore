@@ -1,22 +1,8 @@
 package com.mods.kina.KinaCore.movelib.getInfo;
 
-import com.google.common.collect.Sets;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
-import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockOre;
-import net.minecraft.item.*;
-import net.minecraftforge.common.ForgeHooks;
-
-import java.util.Set;
-
-import static net.minecraft.init.Blocks.*;
-import static net.minecraft.init.Blocks.lit_redstone_ore;
-
 @SuppressWarnings("unchecked")
 public class GetInfoCore{/*UNUSED*/
-    private static FMLControlledNamespacedRegistry<Block> allBlock = (FMLControlledNamespacedRegistry) Block.blockRegistry;
+    /*private static FMLControlledNamespacedRegistry<Block> allBlock = (FMLControlledNamespacedRegistry) Block.blockRegistry;
     private static FMLControlledNamespacedRegistry<Item> allItem = (FMLControlledNamespacedRegistry) Item.itemRegistry;
 
     public static Set<Block> getBlocks(){
@@ -63,9 +49,9 @@ public class GetInfoCore{/*UNUSED*/
                 }
             }
         }
-        /*blocks.addAll((Set<Block>)ReflectionHelper.getPrivateValue(ItemPickaxe.class, null, 0));
+        *//*blocks.addAll((Set<Block>)ReflectionHelper.getPrivateValue(ItemPickaxe.class, null, 0));
         blocks.addAll((Set<Block>)ReflectionHelper.getPrivateValue(ItemSpade.class, null, 0));
-        blocks.addAll((Set<Block>)ReflectionHelper.getPrivateValue(ItemAxe.class, null, 0));*/
+        blocks.addAll((Set<Block>)ReflectionHelper.getPrivateValue(ItemAxe.class, null, 0));*//*
         return blocks;
-    }
+    }*/
 }

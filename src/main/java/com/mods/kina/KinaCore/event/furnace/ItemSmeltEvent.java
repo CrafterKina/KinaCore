@@ -45,14 +45,21 @@ public class ItemSmeltEvent extends Event{
     }
 
     /**
-     ItemSmeltEvent.Pre is fired before vanilla smelting takes place. All changes made to the event's array will be made
-     to the TileEntity if the event is canceled. <br> The event is fired during the TileEntityFurnace#update() method
-     invocation.<br> <br> {@link #stacks} contains the itemstack array from the TileEntitySmelter holding all items in
-     Smelter.<br> <br> {@link #cookTime} contains the integer from the TileEntitySmelter holding processing time in
-     Smelter.<br> <br> {@link #totalCookTime} contains the integer from the TileEntitySmelter holding processing total
-     time in Smelter.<br> <br> This event is not {@link Cancelable}.<br> <br> This event does not have a result. {@link
-    HasResult}<br>
-     */
+     * ItemSmeltEvent.Pre is fired before vanilla smelting takes place.
+     * All changes made to the event's array will be made to the TileEntity if the event is canceled.
+     * <br>
+     * The event is fired during the TileEntityFurnace#update() method invocation.<br>
+     * <br>
+     * {@link #stacks} contains the itemstack array from the TileEntitySmelter holding all items in Smelter.<br>
+     * <br>
+     * {@link #cookTime} contains the integer from the TileEntitySmelter holding processing time in Smelter.<br>
+     * <br>
+     * {@link #totalCookTime} contains the integer from the TileEntitySmelter holding processing total time in Smelter.<br>
+     * <br>
+     * This event is not {@link Cancelable}.<br>
+     * <br>
+     * This event does not have a result. {@link HasResult}<br>
+     **/
     public static class Pre extends ItemSmeltEvent{
         private int cookTime;
         private int totalCookTime;
@@ -81,11 +88,16 @@ public class ItemSmeltEvent extends Event{
     }
 
     /**
-     ItemSmeltEvent.Post is fired when a item is smelted in the furnace. <br> The event is fired during the
-     TileEntityFurnace#smeltItem() method invocation.<br> <br> {@link #stacks} contains the itemstack array from the
-     TileEntitySmelter holding all items in Smelter.<br> <br> This event is not {@link Cancelable}.<br> <br> This event
-     does not have a result. {@link HasResult}<br>
-     */
+     * ItemSmeltEvent.Post is fired when a item is smelted in the furnace.
+     * <br>
+     * The event is fired during the TileEntityFurnace#smeltItem() method invocation.<br>
+     * <br>
+     * {@link #stacks} contains the itemstack array from the TileEntitySmelter holding all items in Smelter.<br>
+     * <br>
+     * This event is not {@link Cancelable}.<br>
+     * <br>
+     * This event does not have a result. {@link HasResult}<br>
+     **/
     public static class Post extends ItemSmeltEvent{
         public Post(World world, BlockPos pos, ItemStack[] stacks){
             super(world, pos, stacks);
