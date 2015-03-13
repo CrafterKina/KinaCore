@@ -11,7 +11,7 @@ public class KinaCoreLoadingPlugin implements IFMLLoadingPlugin{
      @return a list of classes that implements the IClassTransformer interface
      */
     public String[] getASMTransformerClass(){
-        return new String[]{"com.mods.kina.KinaCore.asm.transformer.FurnaceEventTransformer"};
+        return new String[]{"com.mods.kina.KinaCore.asm.transformer.TransformerTileEntityFurnace", "com.mods.kina.KinaCore.asm.transformer.TransformerSlotFurnaceFuel"};
     }
 
     /**

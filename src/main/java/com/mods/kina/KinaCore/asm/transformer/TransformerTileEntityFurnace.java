@@ -3,7 +3,7 @@ package com.mods.kina.KinaCore.asm.transformer;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.*;
 
-public class FurnaceEventTransformer implements IClassTransformer, Opcodes{
+public class TransformerTileEntityFurnace implements IClassTransformer, Opcodes{
     private static final String TARGET = "net.minecraft.tileentity.TileEntityFurnace";
 
     public byte[] transform(String name, String transformedName, byte[] bytes){
@@ -12,7 +12,6 @@ public class FurnaceEventTransformer implements IClassTransformer, Opcodes{
             ClassReader reader = new ClassReader(bytes);
             ClassWriter writer = new ClassWriter(1);
             reader.accept(furnaceClassVisitor(writer), 8);
-            System.out.println(new String(writer.toByteArray()));
             return writer.toByteArray();
         } catch(Exception e){
             throw new RuntimeException(e);
