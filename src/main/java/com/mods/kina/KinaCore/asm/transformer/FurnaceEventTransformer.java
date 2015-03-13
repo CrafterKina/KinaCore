@@ -26,7 +26,32 @@ public class FurnaceEventTransformer implements IClassTransformer, Opcodes{
                     return onUpdateMethodVisitor(api, super.visitMethod(access, name, desc, signature, exceptions));
                 if("smeltItem".equals(name) && "()V".equals(desc))
                     return smeltItemMethodVisitor(api, super.visitMethod(access, name, desc, signature, exceptions));
+                if("canExtractItem".equals(name) && "(ILnet/minecraft/item/ItemStack;Lnet/minecraft/util/EnumFacing;)Z".equals(desc))
+                    return canExtractItemMethodVisitor(api, super.visitMethod(access, name, desc, signature, exceptions));
                 return super.visitMethod(access, name, desc, signature, exceptions);
+            }
+        };
+    }
+
+    private MethodVisitor onUpdateMethodVisitor(int api, MethodVisitor parent){
+        return new MethodVisitor(api, parent){
+            boolean iadd = false;
+            boolean isFirst = true;
+
+            public void visitInsn(int opcode){
+                if(opcode == IADD && isFirst) iadd = true;
+                super.visitInsn(opcode);
+            }
+
+            public void visitFieldInsn(int opcode, String owner, String name, String desc){
+                if(iadd && isFirst && "cookTime".equals(name) && opcode == PUTFIELD){
+                    isFirst = false;
+                    super.visitFieldInsn(PUTFIELD, "net/minecraft/tileentity/TileEntityFurnace", "cookTime", "I");
+                    super.visitVarInsn(ALOAD, 0);
+                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/KinaCoreEventFactory", "onItemAttemptSmelt", "(Lnet/minecraft/tileentity/TileEntityFurnace;)V", false);
+                }else{
+                    super.visitFieldInsn(opcode, owner, name, desc);
+                }
             }
         };
     }
@@ -54,24 +79,17 @@ public class FurnaceEventTransformer implements IClassTransformer, Opcodes{
         };
     }
 
-    private MethodVisitor onUpdateMethodVisitor(int api, MethodVisitor parent){
-        return new MethodVisitor(api, parent){
-            boolean iadd = false;
+    private MethodVisitor canExtractItemMethodVisitor(int api, MethodVisitor methodVisitor){
+        return new MethodVisitor(api, methodVisitor){
             boolean isFirst = true;
 
             public void visitInsn(int opcode){
-                if(opcode == IADD && isFirst) iadd = true;
-                super.visitInsn(opcode);
-            }
-
-            public void visitFieldInsn(int opcode, String owner, String name, String desc){
-                if(iadd && isFirst && "cookTime".equals(name) && opcode == PUTFIELD){
+                if(opcode == ICONST_0 && isFirst){
                     isFirst = false;
-                    super.visitFieldInsn(PUTFIELD, "net/minecraft/tileentity/TileEntityFurnace", "cookTime", "I");
-                    super.visitVarInsn(ALOAD, 0);
-                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/KinaCoreEventFactory", "onItemAttemptSmelt", "(Lnet/minecraft/tileentity/TileEntityFurnace;)V", false);
+                    super.visitVarInsn(ALOAD, 2);
+                    super.visitMethodInsn(INVOKESTATIC, "net/minecraft/inventory/SlotFurnaceFuel", "isBucket", "(Lnet/minecraft/item/ItemStack;)Z", false);
                 }else{
-                    super.visitFieldInsn(opcode, owner, name, desc);
+                    super.visitInsn(opcode);
                 }
             }
         };
