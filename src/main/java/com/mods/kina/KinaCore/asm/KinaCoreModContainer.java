@@ -13,7 +13,7 @@ public class KinaCoreModContainer extends DummyModContainer{
         ModMetadata meta = getMetadata();
         meta.modId = "kina_core";
         meta.name = "KinaCore";
-        meta.version = "@version@";
+        meta.version = "1.0.1";
         meta.authorList = Arrays.asList("CrafterKina");
         meta.description = "";
         meta.url = "";
