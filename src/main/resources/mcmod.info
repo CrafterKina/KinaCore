@@ -1,0 +1,16 @@
+[
+{
+  "modid": "kina_misc",
+  "name": "Kina Misc Improvement",
+  "description": "",
+  "version": "@version@",
+  "mcversion": "@mcversion@",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["CrafterKina"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

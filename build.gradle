@@ -4,6 +4,12 @@ sourceSets.main {
     resources.srcDirs project.projectDir.name
 }
 
+jar {
+    manifest {
+        attributes 'FMLCorePlugin': 'com.mods.kina.KinaCore.asm.KinaCoreLoadingPlugin', 'FMLCorePluginContainsFMLMod': 'true'
+    }
+}
+
 version = "1.0.0"
 minecraft {
     // replacing stuff in the source
