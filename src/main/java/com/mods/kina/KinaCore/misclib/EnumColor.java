@@ -1,5 +1,6 @@
 package com.mods.kina.KinaCore.misclib;
 
+@Deprecated
 public enum EnumColor{
     Black(0, 0, 0),
     Blue(0, 0, 4),

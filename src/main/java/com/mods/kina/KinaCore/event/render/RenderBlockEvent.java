@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
 @Cancelable
+@Deprecated
 public class RenderBlockEvent extends Event{
     public final IBlockAccess world;
     public final IBlockState state;

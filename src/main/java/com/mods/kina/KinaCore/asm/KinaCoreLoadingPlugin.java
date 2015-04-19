@@ -35,7 +35,7 @@ public class KinaCoreLoadingPlugin implements IFMLLoadingPlugin{
      loading (TODO: implement crash ;) )
      */
     public String getSetupClass(){
-        return null;
+        return "com.mods.kina.KinaCore.asm.PrePreInit";
     }
 
     /**
