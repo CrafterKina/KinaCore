@@ -1,4 +1,4 @@
-package com.mods.kina.KinaCore.event;
+package com.mods.kina.KinaCore.event.hooks;
 
 import com.google.common.collect.Sets;
 import net.minecraft.init.Items;

@@ -1,7 +1,7 @@
-package com.mods.kina.KinaCore.event;
+package com.mods.kina.KinaCore.event.hooks;
 
-import com.mods.kina.KinaCore.event.furnace.ItemSmeltEvent;
-import com.mods.kina.KinaCore.event.render.RenderBlockEvent;
+import com.mods.kina.KinaCore.event.hooks.furnace.ItemSmeltEvent;
+import com.mods.kina.KinaCore.event.hooks.render.RenderBlockEvent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.item.ItemStack;

@@ -1,4 +1,4 @@
-package com.mods.kina.KinaCore.event.render;
+package com.mods.kina.KinaCore.event.hooks.render;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.WorldRenderer;

@@ -1,4 +1,4 @@
-package com.mods.kina.KinaCore.event.mod;
+package com.mods.kina.KinaCore.event.hooks.mod;
 
 import com.google.common.collect.MapDifference;
 import net.minecraftforge.fml.common.LoaderState;

@@ -1,4 +1,4 @@
-package com.mods.kina.KinaCore.event.furnace;
+package com.mods.kina.KinaCore.event.hooks.furnace;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;

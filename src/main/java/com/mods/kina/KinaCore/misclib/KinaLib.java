@@ -65,23 +65,8 @@ public class KinaLib{
                 return new AbstractIterator(){
                     private BlockPos lastReturned = null;
 
-                    protected BlockPos computeNext0(){
-                        if(this.lastReturned == null){
-                            this.lastReturned = from;
-                            return this.lastReturned;
-                        }
-
-                        if(to.equals(this.lastReturned)){
-                            return (BlockPos) this.endOfData();
-                        }
-
-                        lastReturned = getFrontPos(dir, lastReturned);
-                        return lastReturned;
-
-                    }
-
                     protected Object computeNext(){
-                        return this.computeNext0();
+                        return to.equals(this.lastReturned) ? endOfData() : (lastReturned = (lastReturned == null) ? from : getFrontPos(dir, lastReturned));
                     }
                 };
             }
@@ -89,7 +74,6 @@ public class KinaLib{
     }
 
     private int to1(int raw){
-        if(raw == 0) return 0;
-        return Integer.toString(raw).contains("-") ? -1 : 1;
+        return raw == 0 ? 0 : raw < 0 ? -1 : 1;
     }
 }
