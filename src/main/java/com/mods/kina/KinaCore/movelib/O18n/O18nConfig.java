@@ -24,7 +24,7 @@ public class O18nConfig{
             creativeTabI = config.get(ITEM, "CreativeTab_Item", "", "set creative tab \"Item,Tab;\"Tabs=(Block,Brewing,Combat,Decorations,Food,Materials,Misc,Redstone,Tools,Transport)").getString();
             maxDamage = config.get(ITEM, "MaxDamage_Item", "", "set durability \"Item,MaxDamage;\"").getString();
             maxStackSize = config.get(ITEM, "MaxStackSize_Item", "", "set max stack size \"Item,MaxStackSize;\"").getString();
-            potionEffect = config.get(ITEM, "PotionRecipe_Item", "", "set potion recipe \"Item,VanillaPosition;\"Positions=(BlazePowder,FermentedSpiderEye,Glowstone,GoldenCarrot,GoldenMelon,Gunpowder,MagmaCream,NetherWart,Redstone,SpiderEye,Sugar,Unimplemented)").getString();
+            potionEffect = config.get(ITEM, "PotionRecipe_Item", "", "set potion recipe \"Item,VanillaPosition;\"Positions=(BlazePowder,FermentedSpiderEye,Glowstone,GoldenCarrot,GoldenMelon,Gunpowder,MagmaCream,NetherWart,Redstone,SpiderEye,Sugar,Pufferfish,RabbitFoot)").getString();
             harvestLevel = config.get(ITEM, "HarvestLevel_Item", "", "set harvest level \"Item,Tool,Level;\"Tools=(axe,pickaxe,shovel),Levels=(Wood:0,Stone:1,Iron:2,Diamond:3,Gold:0)").getString();
             full3D = config.get(ITEM, "HoldToolLike_Item", "", "set hold tool like \"Item;\"").getString();
             alwaysEdible = config.get(FOOD, "AlwaysEdible_Food", "", "set always edible \"Food;\"").getString();

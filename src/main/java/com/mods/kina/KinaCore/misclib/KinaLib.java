@@ -55,7 +55,7 @@ public class KinaLib{
     }
 
     public AxisAlignedBB getBlocklizedAABB(AxisAlignedBB aabb, EnumFacing ignored){
-        return aabb.addCoord(ignored.getFrontOffsetX() == 1 ? 0 : 1, ignored.getFrontOffsetY() == 1 ? 0 : 1, ignored.getFrontOffsetZ() == 1 ? 0 : 1);
+        return aabb.addCoord(Math.pow(ignored.getFrontOffsetX() - 1, 2), Math.pow(ignored.getFrontOffsetY() - 1, 2), Math.pow(ignored.getFrontOffsetZ() - 1, 2));
     }
 
     public Iterable getAllInBox(final BlockPos from, final BlockPos to){

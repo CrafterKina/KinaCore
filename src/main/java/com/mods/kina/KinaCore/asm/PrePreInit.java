@@ -4,6 +4,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.google.common.reflect.Reflection;
 import com.mods.kina.KinaCore.event.hooks.mod.ModStatusChangedEvent;
 import com.mods.kina.KinaCore.misclib.KinaLib;
 import net.minecraftforge.common.MinecraftForge;
@@ -29,7 +30,7 @@ public class PrePreInit implements IFMLCallHook{
                 while(true){
                     List<ModContainer> mods;
                     try{
-                        Class.forName("net.minecraftforge.fml.common.Loader");
+                        Reflection.initialize(Loader.class);
                         mods = Loader.instance().getModList();
                     } catch(Throwable e){
                         continue;
