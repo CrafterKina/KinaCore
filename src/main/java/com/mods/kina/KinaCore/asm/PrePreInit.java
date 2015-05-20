@@ -1,55 +1,74 @@
 package com.mods.kina.KinaCore.asm;
 
 import com.google.common.base.Function;
-import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.google.common.reflect.Reflection;
 import com.mods.kina.KinaCore.event.hooks.mod.ModStatusChangedEvent;
 import com.mods.kina.KinaCore.misclib.KinaLib;
+import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.relauncher.IFMLCallHook;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class PrePreInit implements IFMLCallHook{
-    public void injectData(Map<String,Object> data){
+    private LaunchClassLoader loader;
 
+    public void injectData(Map<String,Object> data){
+        loader = (LaunchClassLoader) data.get("classLoader");
     }
 
     public Void call() throws Exception{
+        checkModState();
+        return null;
+    }
+
+    private void checkModState(){
         new Thread(){
             Map<ModContainer,LoaderState.ModState> prevStateMap = Maps.newHashMap();
-
             public void run(){
                 while(true){
-                    List<ModContainer> mods;
                     try{
-                        Reflection.initialize(Loader.class);
-                        mods = Loader.instance().getModList();
-                    } catch(Throwable e){
+                        loader.findClass(Loader.class.getName());
+                        loader.findClass(KinaLib.class.getName());
+                        Loader.instance().getMCVersionString();
+                    } catch(Throwable ignored){
                         continue;
                     }
-                    Map<ModContainer,LoaderState.ModState> stateMap = Maps.asMap(Sets.newHashSet(mods), new Function<ModContainer,LoaderState.ModState>(){
-                        @Nullable
+                    break;
+                }
+                while(true){
+                    List<ModContainer> mods = Loader.instance().getModList();
+                    final Map<ModContainer,LoaderState.ModState> stateMap = Maps.newHashMap(Maps.asMap(Sets.newHashSet(mods), new Function<ModContainer,LoaderState.ModState>(){
                         public LoaderState.ModState apply(ModContainer input){
                             return Loader.instance().getModState(input);
                         }
-                    });
-                    Map<ModContainer,MapDifference.ValueDifference<LoaderState.ModState>> differenceMap = Maps.difference(stateMap, prevStateMap).entriesDiffering();
-                    for(ModContainer key : differenceMap.keySet()){
-                        MinecraftForge.EVENT_BUS.post(new ModStatusChangedEvent(key, differenceMap.get(key)));
+                    }));
+                    if(!Objects.equals(prevStateMap, stateMap)){
+                        new Thread(){
+                            @Override
+                            public void run(){
+                                MinecraftForge.EVENT_BUS.post(new ModStatusChangedEvent(prevStateMap, stateMap));
+                            }
+                        }.start();
                     }
-                    if(KinaLib.lib.allValueEqual(stateMap, LoaderState.ModState.POSTINITIALIZED)) break;
+                    if(!mods.isEmpty() && KinaLib.lib.allValueEqual(stateMap, LoaderState.ModState.POSTINITIALIZED)){
+                        new Thread(){
+                            @Override
+                            public void run(){
+                                MinecraftForge.EVENT_BUS.post(new ModStatusChangedEvent(prevStateMap, stateMap));
+                            }
+                        }.start();
+                        break;
+                    }
                     prevStateMap = stateMap;
                 }
             }
         }.start();
-        return null;
     }
 }
