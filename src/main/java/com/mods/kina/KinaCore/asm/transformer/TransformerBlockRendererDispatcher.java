@@ -36,7 +36,7 @@ public class TransformerBlockRendererDispatcher implements IClassTransformer, Op
             boolean enable = false;
 
             public void visitInsn(int opcode){
-                if(enable && opcode == ICONST_0){
+                /*if(enable && opcode == ICONST_0){
                     mv.visitVarInsn(ALOAD, 1);
                     mv.visitVarInsn(ALOAD, 2);
                     mv.visitVarInsn(ALOAD, 3);
@@ -44,7 +44,7 @@ public class TransformerBlockRendererDispatcher implements IClassTransformer, Op
                     mv.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreEventFactory", "onRenderBlock", "(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/BlockPos;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/client/renderer/WorldRenderer;)Z", false);
                     enable = false;
                     return;
-                }
+                }*/
                 super.visitInsn(opcode);
             }
 
