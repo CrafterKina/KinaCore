@@ -31,6 +31,13 @@ public class BlockSwitcherBakedModel implements IFlexibleBakedModel, ISmartBlock
         parent = block.getModel(modelState, format, bakedTextureGetter, block.getDefaultState());
     }
 
+    BlockSwitcherBakedModel(BlockSwitcherBakedModel model){
+        block = model.block;
+        modelState = model.modelState;
+        format = model.format;
+        bakedTextureGetter = model.bakedTextureGetter;
+    }
+
     public List<BakedQuad> getFaceQuads(EnumFacing side){
         return parent.getFaceQuads(side);
     }
@@ -64,14 +71,16 @@ public class BlockSwitcherBakedModel implements IFlexibleBakedModel, ISmartBlock
     }
 
     public IFlexibleBakedModel handleBlockState(IBlockState state){
-        parent = block.getModel(modelState, format, bakedTextureGetter, state);
-        parent = parent instanceof ISmartBlockModel ? (IFlexibleBakedModel) ((ISmartBlockModel) parent).handleBlockState(state) : parent;
-        return this;
+        BlockSwitcherBakedModel model = new BlockSwitcherBakedModel(this);
+        model.parent = block.getModel(modelState, format, bakedTextureGetter, state);
+        model.parent = model.parent instanceof ISmartBlockModel ? (IFlexibleBakedModel) ((ISmartBlockModel) model.parent).handleBlockState(state) : model.parent;
+        return model;
     }
 
     public IFlexibleBakedModel handleItemState(ItemStack stack){
-        parent = block.getModel(modelState, format, bakedTextureGetter, stack);
-        parent = parent instanceof ISmartItemModel ? (IFlexibleBakedModel) ((ISmartItemModel) parent).handleItemState(stack) : parent;
-        return this;
+        BlockSwitcherBakedModel model = new BlockSwitcherBakedModel(this);
+        model.parent = block.getModel(modelState, format, bakedTextureGetter, stack);
+        model.parent = model.parent instanceof ISmartItemModel ? (IFlexibleBakedModel) ((ISmartItemModel) model.parent).handleItemState(stack) : model.parent;
+        return model;
     }
 }
