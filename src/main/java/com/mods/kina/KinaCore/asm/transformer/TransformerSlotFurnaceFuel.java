@@ -48,7 +48,7 @@ public class TransformerSlotFurnaceFuel implements IClassTransformer, Opcodes{
 
             public void visitJumpInsn(int opcode, Label label){
                 if(opcode == IF_ACMPNE){
-                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/KinaCoreHooks", "isBucket", "(Lnet/minecraft/item/ItemStack;)Z", false);
+                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreHooks", "isBucket", "(Lnet/minecraft/item/ItemStack;)Z", false);
                     super.visitJumpInsn(IFEQ, label);
                 }else{
                     super.visitJumpInsn(opcode, label);

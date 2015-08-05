@@ -24,7 +24,12 @@ public class PrePreInit implements IFMLCallHook{
     }
 
     public Void call() throws Exception{
-        checkModState();
+        /*Downloader downloader = new Downloader();
+        while(downloader.isVisible()||downloader.isShowing()){
+            System.out.printf("\r%b,%b\n",downloader.isVisible(),downloader.isShowing());
+        }
+        System.out.println("GUI EXIT");*/
+        //checkModState();
         return null;
     }
 
@@ -35,8 +40,8 @@ public class PrePreInit implements IFMLCallHook{
                 while(true){
                     try{
                         loader.findClass(Loader.class.getName());
-                        loader.findClass(KinaLib.class.getName());
-                        Loader.instance().getMCVersionString();
+                        //loader.findClass(KinaLib.class.getName());
+                        Loader.instance().getModList();
                     } catch(Throwable ignored){
                         continue;
                     }
@@ -69,6 +74,6 @@ public class PrePreInit implements IFMLCallHook{
                     prevStateMap = stateMap;
                 }
             }
-        }.start();
+        }/*.start()*/;
     }
 }

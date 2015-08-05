@@ -49,7 +49,7 @@ public class TransformerTileEntityFurnace implements IClassTransformer, Opcodes{
                     isFirst = false;
                     super.visitFieldInsn(opcode, owner, name, desc);
                     super.visitVarInsn(ALOAD, 0);
-                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/KinaCoreEventFactory", "onItemAttemptSmelt", "(Lnet/minecraft/tileentity/TileEntityFurnace;)V", false);
+                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreEventFactory", "onItemAttemptSmelt", "(Lnet/minecraft/tileentity/TileEntityFurnace;)V", false);
                 }else{
                     super.visitFieldInsn(opcode, owner, name, desc);
                 }
@@ -72,7 +72,7 @@ public class TransformerTileEntityFurnace implements IClassTransformer, Opcodes{
                     isFirst = false;
                     super.visitFieldInsn(opcode, owner, name, desc);
                     super.visitVarInsn(ALOAD, 0);
-                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/KinaCoreEventFactory", "onItemSmelted", "(Lnet/minecraft/tileentity/TileEntityFurnace;)V", false);
+                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreEventFactory", "onItemSmelted", "(Lnet/minecraft/tileentity/TileEntityFurnace;)V", false);
                 }else{
                     super.visitFieldInsn(opcode, owner, name, desc);
                 }

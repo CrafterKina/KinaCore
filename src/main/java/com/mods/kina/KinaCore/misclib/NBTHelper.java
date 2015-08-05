@@ -92,18 +92,25 @@ public class NBTHelper{
         NBTBase get = nbt.getTag(key);
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
+        Method write;
+        try{
+            write = get.getClass().getDeclaredMethod("func_74734_a", DataOutput.class);
+        } catch(NoSuchMethodException e){
+            try{
+                write = get.getClass().getDeclaredMethod("write", DataOutput.class);
+            } catch(NoSuchMethodException e1){
+                throw new NoSuchMethodError();
+            }
+        }
         try{
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             oos = new ObjectOutputStream(baos);
-            Method write = get.getClass().getDeclaredMethod("write", DataOutput.class);
             write.invoke(get, oos);
             ois = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()));
             return ois.readObject();
         } catch(IllegalAccessException e){
             e.printStackTrace();
         } catch(InvocationTargetException e){
-            e.printStackTrace();
-        } catch(NoSuchMethodException e){
             e.printStackTrace();
         } catch(IOException e){
             e.printStackTrace();

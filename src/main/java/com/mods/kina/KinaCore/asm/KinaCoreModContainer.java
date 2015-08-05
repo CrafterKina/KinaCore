@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.DummyModContainer;
 import net.minecraftforge.fml.common.LoadController;
 import net.minecraftforge.fml.common.ModMetadata;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 public class KinaCoreModContainer extends DummyModContainer{
     public KinaCoreModContainer(){
@@ -14,7 +14,7 @@ public class KinaCoreModContainer extends DummyModContainer{
         meta.modId = "kina_core";
         meta.name = "KinaCore";
         meta.version = "1.0.1";
-        meta.authorList = Arrays.asList("CrafterKina");
+        meta.authorList = Collections.singletonList("CrafterKina");
         meta.description = "";
         meta.url = "";
         meta.credits = "";

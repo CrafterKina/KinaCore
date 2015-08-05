@@ -41,7 +41,7 @@ public class TransformerBlockRendererDispatcher implements IClassTransformer, Op
                     mv.visitVarInsn(ALOAD, 2);
                     mv.visitVarInsn(ALOAD, 3);
                     mv.visitVarInsn(ALOAD, 4);
-                    mv.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/KinaCoreEventFactory", "onRenderBlock", "(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/BlockPos;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/client/renderer/WorldRenderer;)Z", false);
+                    mv.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreEventFactory", "onRenderBlock", "(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/BlockPos;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/client/renderer/WorldRenderer;)Z", false);
                     enable = false;
                     return;
                 }
@@ -53,7 +53,6 @@ public class TransformerBlockRendererDispatcher implements IClassTransformer, Op
                 super.visitTableSwitchInsn(min, max, dflt, labels);
             }
 
-            @Override
             public void visitLabel(Label label){
                 enable = label == visitLabel;
                 super.visitLabel(label);

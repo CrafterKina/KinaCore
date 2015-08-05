@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import java.util.Collections;
 import java.util.Map;
 
+@Deprecated
 public class ModStatusChangedEvent extends Event{
     public final Map<ModContainer,LoaderState.ModState> prevStateMap;
     public final Map<ModContainer,LoaderState.ModState> stateMap;

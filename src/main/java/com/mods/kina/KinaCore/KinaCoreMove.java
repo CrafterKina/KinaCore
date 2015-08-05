@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "kina_misc")
+@Mod(modid = "kina_misc", guiFactory = "com.mods.kina.KinaCore.movelib.gui.KinaCoreGuiFactory")
 public class KinaCoreMove{
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
