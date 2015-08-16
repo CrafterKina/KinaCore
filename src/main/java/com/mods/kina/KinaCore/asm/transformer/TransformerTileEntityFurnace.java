@@ -1,6 +1,9 @@
 package com.mods.kina.KinaCore.asm.transformer;
 
+import com.mods.kina.KinaCore.misclib.utils.asm.UtilASM;
+import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.IClassTransformer;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import org.objectweb.asm.*;
 
@@ -49,7 +52,7 @@ public class TransformerTileEntityFurnace implements IClassTransformer, Opcodes{
                     isFirst = false;
                     super.visitFieldInsn(opcode, owner, name, desc);
                     super.visitVarInsn(ALOAD, 0);
-                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreEventFactory", "onItemAttemptSmelt", "(Lnet/minecraft/tileentity/TileEntityFurnace;)V", false);
+                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreEventFactory", "onItemAttemptSmelt", UtilASM.getDesc(void.class, TileEntityFurnace.class), false);
                 }else{
                     super.visitFieldInsn(opcode, owner, name, desc);
                 }
@@ -72,7 +75,7 @@ public class TransformerTileEntityFurnace implements IClassTransformer, Opcodes{
                     isFirst = false;
                     super.visitFieldInsn(opcode, owner, name, desc);
                     super.visitVarInsn(ALOAD, 0);
-                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreEventFactory", "onItemSmelted", "(Lnet/minecraft/tileentity/TileEntityFurnace;)V", false);
+                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreEventFactory", "onItemSmelted", UtilASM.getDesc(void.class, TileEntityFurnace.class), false);
                 }else{
                     super.visitFieldInsn(opcode, owner, name, desc);
                 }
@@ -88,7 +91,7 @@ public class TransformerTileEntityFurnace implements IClassTransformer, Opcodes{
                 if(opcode == ICONST_0 && isFirst){
                     isFirst = false;
                     super.visitVarInsn(ALOAD, 2);
-                    super.visitMethodInsn(INVOKESTATIC, "net/minecraft/inventory/SlotFurnaceFuel", "func_178173_c_", "(Lnet/minecraft/item/ItemStack;)Z", false);
+                    super.visitMethodInsn(INVOKESTATIC, "net/minecraft/inventory/SlotFurnaceFuel", "func_178173_c_", UtilASM.getDesc(boolean.class, ItemStack.class), false);
                 }else{
                     super.visitInsn(opcode);
                 }

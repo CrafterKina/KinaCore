@@ -1,5 +1,7 @@
 package com.mods.kina.KinaCore.asm.transformer;
 
+import com.mods.kina.KinaCore.misclib.utils.asm.UtilASM;
+import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import org.objectweb.asm.*;
@@ -48,7 +50,7 @@ public class TransformerSlotFurnaceFuel implements IClassTransformer, Opcodes{
 
             public void visitJumpInsn(int opcode, Label label){
                 if(opcode == IF_ACMPNE){
-                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreHooks", "isBucket", "(Lnet/minecraft/item/ItemStack;)Z", false);
+                    super.visitMethodInsn(INVOKESTATIC, "com/mods/kina/KinaCore/event/hooks/KinaCoreHooks", "isBucket", UtilASM.getDesc(boolean.class, ItemStack.class), false);
                     super.visitJumpInsn(IFEQ, label);
                 }else{
                     super.visitJumpInsn(opcode, label);
