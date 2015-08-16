@@ -35,8 +35,6 @@ public abstract class AbstractSimpleBlockRenderingHandler implements IFlexibleBa
 
     protected abstract Matrix4f viewpointMatrix(ItemCameraTransforms.TransformType transformType);
 
-    protected abstract AbstractSimpleBlockRenderingHandler copy(AbstractSimpleBlockRenderingHandler origin);
-
     protected abstract AbstractSimpleBlockRenderingHandler create();
 
     public abstract TextureAtlasSprite getTexture();
