@@ -6,7 +6,9 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import org.objectweb.asm.*;
 
-public class TransformerSlotFurnaceFuel implements IClassTransformer, Opcodes{
+import static org.objectweb.asm.Opcodes.*;
+
+public class TransformerSlotFurnaceFuel implements IClassTransformer{
     private static final String TARGET = "net.minecraft.inventory.SlotFurnaceFuel";
 
     public byte[] transform(String name, String transformedName, byte[] bytes){
