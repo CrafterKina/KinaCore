@@ -37,6 +37,8 @@ public abstract class AbstractSimpleBlockRenderingHandler implements IFlexibleBa
 
     protected abstract AbstractSimpleBlockRenderingHandler copy(AbstractSimpleBlockRenderingHandler origin);
 
+    protected abstract AbstractSimpleBlockRenderingHandler create();
+
     public abstract TextureAtlasSprite getTexture();
 
     ////////////set&get/////////////
@@ -117,7 +119,7 @@ public abstract class AbstractSimpleBlockRenderingHandler implements IFlexibleBa
 
     @Override
     public final Pair<IBakedModel,Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType){
-        AbstractSimpleBlockRenderingHandler copy = copy(this);
+        AbstractSimpleBlockRenderingHandler copy = create();
         copy.setTransformType(cameraTransformType);
         copy.setItemstack(getItemstack());
         return Pair.of((IBakedModel) copy, copy.viewpointMatrix(cameraTransformType));
@@ -125,14 +127,14 @@ public abstract class AbstractSimpleBlockRenderingHandler implements IFlexibleBa
 
     @Override
     public IFlexibleBakedModel handleBlockState(IBlockState state){
-        AbstractSimpleBlockRenderingHandler copy = copy(this);
+        AbstractSimpleBlockRenderingHandler copy = create();
         copy.setBlockstate(state);
         return copy;
     }
 
     @Override
     public IFlexibleBakedModel handleItemState(ItemStack stack){
-        AbstractSimpleBlockRenderingHandler copy = copy(this);
+        AbstractSimpleBlockRenderingHandler copy = create();
         copy.setItemstack(stack);
         copy.setTransformType(getTransformType());
         return copy;
