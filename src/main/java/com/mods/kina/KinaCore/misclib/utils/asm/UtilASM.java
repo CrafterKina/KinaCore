@@ -1,16 +1,18 @@
 package com.mods.kina.KinaCore.misclib.utils.asm;
 
-import org.objectweb.asm.Type;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public class UtilASM{
-    public static String getDesc(Class<?> returnType, Class<?>... descTypes){
-        StringBuilder buf = new StringBuilder();
-        buf.append('(');
-        for(Class<?> descType : descTypes){
-            buf.append(Type.getDescriptor(descType));
+    @SuppressWarnings("unchecked")
+    public static <K, V> V getValueFromAsMapList(List<?> list, K key){
+        ListIterator<?> iterator = list.listIterator();
+        for(Object o = null; iterator.hasNext(); o = iterator.next()){
+            if(key.equals(o)){
+                return (V) iterator.next();
+            }
         }
-        buf.append(')');
-        buf.append(Type.getDescriptor(returnType));
-        return buf.toString();
+        throw new IllegalArgumentException(new NoSuchElementException());
     }
 }

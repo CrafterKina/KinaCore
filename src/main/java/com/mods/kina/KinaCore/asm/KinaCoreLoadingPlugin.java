@@ -1,5 +1,6 @@
 package com.mods.kina.KinaCore.asm;
 
+import com.mods.kina.KinaCore.asm.transformer.TransformerKinaProp;
 import com.mods.kina.KinaCore.asm.transformer.TransformerSlotFurnaceFuel;
 import com.mods.kina.KinaCore.asm.transformer.TransformerTileEntityFurnace;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
@@ -13,7 +14,7 @@ public class KinaCoreLoadingPlugin implements IFMLLoadingPlugin{
      @return a list of classes that implements the IClassTransformer interface
      */
     public String[] getASMTransformerClass(){
-        return new String[]{TransformerTileEntityFurnace.class.getCanonicalName(), TransformerSlotFurnaceFuel.class.getCanonicalName()};
+        return new String[]{TransformerTileEntityFurnace.class.getCanonicalName(), TransformerSlotFurnaceFuel.class.getCanonicalName(), TransformerKinaProp.class.getCanonicalName()};
     }
 
     /**
