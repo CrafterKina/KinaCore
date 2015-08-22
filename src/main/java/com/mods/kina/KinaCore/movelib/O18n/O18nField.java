@@ -50,11 +50,11 @@ public enum O18nField{
         public String[] hardness = {};
         @KinaProp(comment = "set light level \"Block,Level\"")
         public String[] lightLevel = {};
-        @KinaProp(comment = "set creative tab \"Block,Tab;\"Tabs=(Block,Brewing,Combat,Decorations,Food,Materials,Misc,Redstone,Tools,Transport)")
+        @KinaProp(comment = "set creative tab \"Block,Tab\"Tabs=(Block,Brewing,Combat,Decorations,Food,Materials,Misc,Redstone,Tools,Transport)")
         public String[] creativeTab = {};
-        @KinaProp(comment = "set step sound \"Block,Sound;\"Sounds=(Anvil,Cloth,Grass,Glass,Gravel,Ladder,Metal,Piston,Sand,Stone,Wood)")
+        @KinaProp(comment = "set step sound \"Block,Sound\"Sounds=(Anvil,Cloth,Grass,Glass,Gravel,Ladder,Metal,Piston,Sand,Stone,Wood)")
         public String[] stepSound = {};
-        @KinaProp(comment = "set harvest level \"Block,Tool,Level;\"Tools=(axe,pickaxe,shovel),Levels=(Wood:0,Stone:1,Iron:2,Diamond:3,Gold:0)")
+        @KinaProp(comment = "set harvest level \"Block,Tool,Level\"Tools=(axe,pickaxe,shovel),Levels=(Wood:0,Stone:1,Iron:2,Diamond:3,Gold:0)")
         public String[] harvestLevel = {};
     },
     @KinaProp(isInstance = true, category = "item")
@@ -83,17 +83,17 @@ public enum O18nField{
             return potionEffect;
         }
 
-        @KinaProp(comment = "set creative tab \"Item,Tab;\"Tabs=(Block,Brewing,Combat,Decorations,Food,Materials,Misc,Redstone,Tools,Transport)")
+        @KinaProp(comment = "set creative tab \"Item,Tab\"Tabs=(Block,Brewing,Combat,Decorations,Food,Materials,Misc,Redstone,Tools,Transport)")
         public String[] creativeTab = {};
-        @KinaProp(comment = "set durability \"Item,MaxDamage;\"")
+        @KinaProp(comment = "set durability \"Item,MaxDamage\"")
         public String[] maxDamage = {};
-        @KinaProp(comment = "set max stack size \"Item,MaxStackSize;\"")
+        @KinaProp(comment = "set max stack size \"Item,MaxStackSize\"")
         public String[] maxStackSize = {};
-        @KinaProp(comment = "set potion recipe \"Item,VanillaPosition;\"Positions=(BlazePowder,FermentedSpiderEye,Glowstone,GoldenCarrot,GoldenMelon,Gunpowder,MagmaCream,NetherWart,Redstone,SpiderEye,Sugar,Pufferfish,RabbitFoot)")
+        @KinaProp(comment = "set potion recipe \"Item,VanillaPosition\"Positions=(BlazePowder,FermentedSpiderEye,Glowstone,GoldenCarrot,GoldenMelon,Gunpowder,MagmaCream,NetherWart,Redstone,SpiderEye,Sugar,Pufferfish,RabbitFoot)")
         public String[] potionEffect = {};
-        @KinaProp(comment = "set harvest level \"Item,Tool,Level;\"Tools=(axe,pickaxe,shovel),Levels=(Wood:0,Stone:1,Iron:2,Diamond:3,Gold:0)")
+        @KinaProp(comment = "set harvest level \"Item,Tool,Level\"Tools=(axe,pickaxe,shovel),Levels=(Wood:0,Stone:1,Iron:2,Diamond:3,Gold:0)")
         public String[] harvestLevel = {};
-        @KinaProp(comment = "set hold tool like \"Item;\"")
+        @KinaProp(comment = "set hold tool like \"Item\"")
         public String[] full3D = {};
     },
     @KinaProp(isInstance = true, category = "food")
@@ -106,9 +106,9 @@ public enum O18nField{
             return potionEffect;
         }
 
-        @KinaProp(comment = "set always edible \"Food;\"")
+        @KinaProp(comment = "set always edible \"Food\"")
         public String[] alwaysEdible = {};
-        @KinaProp(comment = "set potion effect \"Food,Effect(name or id),Duration,AmplifierLevel,Probability;\"Effects=(Speed,Slowness,Haste,MiningFatigue,Strength,InstantHealth,InstantDamage,JumpBoost,Nausea,Regeneration,Resistance,FireResistance,WaterBreathing,Invisibility,Blindness,NightVision,Hunger,Weakness,Poison,Wither,HealthBoost,Absorption,Saturation)")
+        @KinaProp(comment = "set potion effect \"Food,Effect(name or id),Duration,AmplifierLevel,Probability\"Effects=(Speed,Slowness,Haste,MiningFatigue,Strength,InstantHealth,InstantDamage,JumpBoost,Nausea,Regeneration,Resistance,FireResistance,WaterBreathing,Invisibility,Blindness,NightVision,Hunger,Weakness,Poison,Wither,HealthBoost,Absorption,Saturation)")
         public String[] potionEffect = {};
     },
     @KinaProp(isInstance = true, category = "fluid")
