@@ -96,10 +96,6 @@ public class O18nMisc{
         return FluidRegistry.lookupFluidForBlock(Block.getBlockFromName(s));
     }
 
-    public String[] getSet1(String s){
-        return s.split(";");
-    }
-
     public String[] getSet2(String s){
         return s.split(",");
     }

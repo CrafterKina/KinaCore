@@ -1,51 +1,26 @@
 package com.mods.kina.KinaCore.asm.transformer;
 
-import com.mods.kina.KinaCore.misclib.utils.asm.UtilASM;
-import com.mods.kina.KinaCore.movelib.config.KinaProp;
-import com.mods.kina.KinaCore.movelib.config.ValueAssigner;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.Type;
-import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.FieldNode;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TransformerKinaProp implements IClassTransformer{
+    public static Set<String> className = new HashSet<String>();
     public byte[] transform(String name, String transformedName, byte[] bytes){
         if(bytes == null) return null;
+        byte[] copyOf = Arrays.copyOf(bytes, bytes.length);
 
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
         classReader.accept(classNode, 0);
 
-        searchAnnotatedClass(classNode);
 
-        searchAnnotatedFields(classNode);
+        className.add(classNode.name.replace('/', '.'));
 
-        return bytes;
-    }
-
-    private void searchAnnotatedFields(ClassNode classNode){
-        String className = classNode.name;
-        for(FieldNode fieldNode : classNode.fields){
-            for(AnnotationNode annotation : fieldNode.visibleAnnotations){
-                if(annotation.desc.equals(Type.getDescriptor(KinaProp.class))){
-                    Boolean isInstance = UtilASM.getValueFromAsMapList(annotation.values, "isInstance");
-                    if(isInstance){
-                        ValueAssigner.instanceFields.put(className, fieldNode.name);
-                    }else{
-                        ValueAssigner.configurableFields.put(className, fieldNode.name);
-                    }
-                }
-            }
-        }
-    }
-
-    private void searchAnnotatedClass(ClassNode classNode){
-        for(AnnotationNode annotation : classNode.visibleAnnotations){
-            if(annotation.desc.equals(Type.getDescriptor(KinaProp.class))){
-                ValueAssigner.defaultedClasses.add(classNode.name.replace('/', '.'));
-            }
-        }
+        return copyOf;
     }
 }

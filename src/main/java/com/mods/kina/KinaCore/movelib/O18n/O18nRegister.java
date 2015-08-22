@@ -11,53 +11,51 @@ import static com.mods.kina.KinaCore.movelib.O18n.O18nField.*;
 public class O18nRegister {
     public static void registerThing(FMLInitializationEvent event){
         O18nMisc misc = new O18nMisc();
-        if(!isOK) return;
+        if(!GENERAL.isEnable()) return;
         //Block
-        if(!lightOpacity.isEmpty()) for(String a : misc.getSet1(lightOpacity))
+        for(String a : BLOCK.getLightOpacity())
             Block.getBlockFromName(misc.getSet2(a)[0]).setLightOpacity(Integer.valueOf(misc.getSet2(a)[1]));
-        if(!hardness.isEmpty()) for(String a : misc.getSet1(hardness))
+        for(String a : BLOCK.getHardness())
             Block.getBlockFromName(misc.getSet2(a)[0]).setHardness(Float.valueOf(misc.getSet2(a)[1] + "f"));
-        if(!resistance.isEmpty()) for(String a : misc.getSet1(resistance))
+        for(String a : BLOCK.getResistance())
             Block.getBlockFromName(misc.getSet2(a)[0]).setResistance(Float.valueOf(misc.getSet2(a)[1] + "f"));
-        if(!lightLevel.isEmpty()) for(String a : misc.getSet1(lightLevel))
+        for(String a : BLOCK.getLightLevel())
             Block.getBlockFromName(misc.getSet2(a)[0]).setLightLevel(Float.valueOf(misc.getSet2(a)[1] + "f"));
-        if(!creativeTab.isEmpty()) for(String a : misc.getSet1(creativeTab))
+        for(String a : BLOCK.getCreativeTab())
             Block.getBlockFromName(misc.getSet2(a)[0]).setCreativeTab(misc.getTab(misc.getSet2(a)[1]));
-        if(!stepSound.isEmpty()) for(String a : misc.getSet1(stepSound))
+        for(String a : BLOCK.getStepSound())
             Block.getBlockFromName(misc.getSet2(a)[0]).setStepSound(misc.getSound(misc.getSet2(a)[1]));
-        if(!harvestLevelB.isEmpty()) for(String a : misc.getSet1(harvestLevelB))
+        for(String a : BLOCK.getHarvestLevel())
             Block.getBlockFromName(misc.getSet2(a)[0]).setHarvestLevel(misc.getSet2(a)[1], Integer.valueOf(misc.getSet2(a)[2]));
         //Item
-        if(!creativeTabI.isEmpty()) for(String a : misc.getSet1(creativeTabI))
+        for(String a : ITEM.getCreativeTab())
             Item.getByNameOrId(misc.getSet2(a)[0]).setCreativeTab(misc.getTab(misc.getSet2(a)[1]));
-        if(!maxDamage.isEmpty()) for(String a : misc.getSet1(maxDamage))
+        for(String a : ITEM.getMaxDamage())
             Item.getByNameOrId(misc.getSet2(a)[0]).setMaxDamage(Integer.valueOf(misc.getSet2(a)[1]));
-        if(!maxStackSize.isEmpty()) for(String a : misc.getSet1(maxStackSize))
+        for(String a : ITEM.getMaxStackSize())
             Item.getByNameOrId(misc.getSet2(a)[0]).setMaxStackSize(Integer.valueOf(misc.getSet2(a)[1]));
-        if(!potionEffect.isEmpty()) for(String a : misc.getSet1(potionEffect))
+        for(String a : ITEM.getPotionEffect())
             Item.getByNameOrId(misc.getSet2(a)[0]).setPotionEffect(misc.getPotionEffect(misc.getSet2(a)[1]));
-        if(!harvestLevel.isEmpty()) for(String a : misc.getSet1(harvestLevel))
+        for(String a : ITEM.getHarvestLevel())
             Item.getByNameOrId(misc.getSet2(a)[0]).setHarvestLevel(misc.getSet2(a)[1], Integer.valueOf(misc.getSet2(a)[2]));
-        if(!full3D.isEmpty()) for(String a : misc.getSet1(full3D))
+        for(String a : ITEM.getFull3D())
             Item.getByNameOrId(a).setFull3D();
         //Food
-        if(!alwaysEdible.isEmpty()) for(String a : misc.getSet1(alwaysEdible))
+        for(String a : FOOD.getAlwaysEdible())
             ((ItemFood) Item.getByNameOrId(a)).setAlwaysEdible();
-        if(!potionEffectF.isEmpty()) for(String a : misc.getSet1(potionEffectF))
+        for(String a : FOOD.getPotionEffect())
             ((ItemFood) Item.getByNameOrId(misc.getSet2(a)[0])).setPotionEffect(misc.getPotionIdFromName(misc.getSet2(a)[1]), Integer.valueOf(misc.getSet2(a)[2]), Integer.valueOf(misc.getSet2(a)[3]), Float.valueOf(misc.getSet2(a)[4] + "f"));
         //Fluid
-        if(!fluidLuminosity.isEmpty()) for(String a : misc.getSet1(fluidLuminosity))
+        for(String a : FLUID.getLuminosity())
             misc.getFluidFromBlockName(misc.getSet2(a)[0]).setLuminosity(Integer.valueOf(misc.getSet2(a)[1]));
-        if(!fluidDensity.isEmpty()) for(String a : misc.getSet1(fluidDensity))
+        for(String a : FLUID.getDensity())
             misc.getFluidFromBlockName(misc.getSet2(a)[0]).setDensity(Integer.valueOf(misc.getSet2(a)[1]));
-        if(!fluidTemperature.isEmpty()) for(String a : misc.getSet1(fluidTemperature))
+        for(String a : FLUID.getTemperature())
             misc.getFluidFromBlockName(misc.getSet2(a)[0]).setTemperature(Integer.valueOf(misc.getSet2(a)[1]));
-        if(!fluidViscosity.isEmpty()) for(String a : misc.getSet1(fluidViscosity))
+        for(String a : FLUID.getViscosity())
             misc.getFluidFromBlockName(misc.getSet2(a)[0]).setViscosity(Integer.valueOf(misc.getSet2(a)[1]));
         //OreDictionary
-        if(!oreBlock.isEmpty()) for(String a : misc.getSet1(oreBlock))
-            OreDictionary.registerOre(misc.getSet2(a)[1], Block.getBlockFromName(misc.getSet2(a)[0]));
-        if(!oreItem.isEmpty()) for(String a : misc.getSet1(oreItem))
+        for(String a : ORE.getRegister())
             OreDictionary.registerOre(misc.getSet2(a)[1], Item.getByNameOrId(misc.getSet2(a)[0]));
     }
 }
