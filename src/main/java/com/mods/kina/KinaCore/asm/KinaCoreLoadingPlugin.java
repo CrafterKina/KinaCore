@@ -1,3 +1,30 @@
+/*
+ * Copyright (c) 2015, CrafterKina
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *  Redistributions of source code must retain the above copyright notice,
+ *   this list of conditions and the following disclaimer.
+ *  Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *  Neither the name of the CrafterKina nor the　names of its contributors
+ *   may be used to endorse or promote products derived from this software
+ *   without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL CrafterKina BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 package com.mods.kina.KinaCore.asm;
 
 import com.mods.kina.KinaCore.asm.transformer.TransformerKinaProp;
@@ -8,52 +35,23 @@ import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import java.util.Map;
 
 public class KinaCoreLoadingPlugin implements IFMLLoadingPlugin{
-    /**
-     Return a list of classes that implements the IClassTransformer interface
 
-     @return a list of classes that implements the IClassTransformer interface
-     */
     public String[] getASMTransformerClass(){
         return new String[]{TransformerTileEntityFurnace.class.getCanonicalName(), TransformerSlotFurnaceFuel.class.getCanonicalName(), TransformerKinaProp.class.getCanonicalName()};
     }
 
-    /**
-     Return a class name that implements "ModContainer" for injection into the mod list The "getName" function should
-     return a name that other mods can, if need be, depend on. Trivially, this modcontainer will be loaded before all
-     regular mod containers, which means it will be forced to be "immutable" - not susceptible to normal sorting
-     behaviour. All other mod behaviours are available however- this container can receive and handle normal loading
-     events
-     */
     public String getModContainerClass(){
         return "com.mods.kina.KinaCore.asm.KinaCoreModContainer";
     }
 
-    /**
-     Return the class name of an implementor of "IFMLCallHook", that will be run, in the main thread, to perform any
-     additional setup this coremod may require. It will be run <strong>prior</strong> to Minecraft starting, so it CANNOT
-     operate on minecraft itself. The game will deliberately crash if this code is detected to trigger a minecraft class
-     loading (TODO: implement crash ;) )
-     */
     public String getSetupClass(){
         return null;
     }
 
-    /**
-     Inject coremod data into this coremod This data includes: "mcLocation" : the location of the minecraft directory,
-     "coremodList" : the list of coremods "coremodLocation" : the file this coremod loaded from,
-
-     @param data
-     */
     public void injectData(Map<String,Object> data){
 
     }
 
-    /**
-     Return an optional access transformer class for this coremod. It will be injected post-deobf so ensure your ATs
-     conform to the new srgnames scheme.
-
-     @return the name of an access transformer class or null if none is provided
-     */
     public String getAccessTransformerClass(){
         return null;
     }
