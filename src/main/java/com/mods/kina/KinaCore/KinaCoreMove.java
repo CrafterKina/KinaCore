@@ -27,26 +27,50 @@
 
 package com.mods.kina.KinaCore;
 
-import com.mods.kina.KinaCore.movelib.O18n.O18nConfig;
-import com.mods.kina.KinaCore.movelib.O18n.O18nRegister;
+import com.google.common.collect.Lists;
+import com.mods.kina.KinaCore.misclib.base.fle.IFMLStateEvents;
+import com.mods.kina.KinaCore.movelib.O18n.O18nHooks;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
+
+import java.util.Collections;
+import java.util.List;
 
 @Mod(modid = "kina_misc", guiFactory = "com.mods.kina.KinaCore.movelib.gui.KinaCoreGuiFactory")
-public class KinaCoreMove{
+public class KinaCoreMove implements IFMLStateEvents{
+    private List<IFMLStateEvents> handlers;
+
+    public void construction(FMLConstructionEvent event){
+        handlers = Collections.unmodifiableList(Lists.newArrayList(new O18nHooks()));
+        for(IFMLStateEvents handler : handlers){
+            handler.construction(event);
+        }
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
-        O18nConfig.makeConfig(event);
+        for(IFMLStateEvents handler : handlers){
+            handler.preInit(event);
+        }
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
-        O18nRegister.registerThing(event);
+        for(IFMLStateEvents handler : handlers){
+            handler.init(event);
+        }
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event){
+        for(IFMLStateEvents handler : handlers){
+            handler.postInit(event);
+        }
+    }
+
+    public void complete(FMLLoadCompleteEvent event){
+        for(IFMLStateEvents handler : handlers){
+            handler.complete(event);
+        }
     }
 }
