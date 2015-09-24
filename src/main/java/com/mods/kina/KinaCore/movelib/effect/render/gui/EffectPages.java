@@ -25,35 +25,45 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.mods.kina.KinaCore.misclib.base.fle;
+package com.mods.kina.KinaCore.movelib.effect.render.gui;
 
-import net.minecraftforge.fml.common.event.*;
+import com.google.common.collect.Lists;
 
-public abstract class AbstractFMLStateEvent implements IFMLStateEvents{
+import java.util.Collections;
+import java.util.List;
 
-    @Override
-    public void construction(FMLConstructionEvent event){
+import static com.google.common.base.Preconditions.*;
 
+public class EffectPages{
+    private static final List<IEffectPage> pages = Lists.newArrayList((IEffectPage[]) IEffectPage.EnumPage.values());
+
+    public static List<IEffectPage> getPages(){
+        return Collections.unmodifiableList(pages);
     }
 
-    @Override
-    public void preInit(FMLPreInitializationEvent event){
-
+    public static void register(IEffectPage page){
+        checkNotNull(page);
+        pages.add(page);
     }
 
-    @Override
-    public void init(FMLInitializationEvent event){
+    public interface IEffectPage{
+        String getName();
 
+        boolean isEnable();
+
+        enum EnumPage implements IEffectPage{
+            Potion,
+            Effect;
+
+            @Override
+            public String getName(){
+                return name();
+            }
+
+            @Override
+            public boolean isEnable(){
+                return false;
+            }
+        }
     }
-
-    @Override
-    public void postInit(FMLPostInitializationEvent event){
-
-    }
-
-    @Override
-    public void complete(FMLLoadCompleteEvent event){
-
-    }
-
 }

@@ -25,35 +25,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.mods.kina.KinaCore.misclib.base.fle;
+package com.mods.kina.KinaCore.movelib.effect.storage;
 
-import net.minecraftforge.fml.common.event.*;
+import com.google.common.collect.Maps;
+import net.minecraft.entity.EntityLivingBase;
 
-public abstract class AbstractFMLStateEvent implements IFMLStateEvents{
+import java.util.Map;
 
-    @Override
-    public void construction(FMLConstructionEvent event){
-
-    }
-
-    @Override
-    public void preInit(FMLPreInitializationEvent event){
-
-    }
-
-    @Override
-    public void init(FMLInitializationEvent event){
-
-    }
-
-    @Override
-    public void postInit(FMLPostInitializationEvent event){
-
-    }
-
-    @Override
-    public void complete(FMLLoadCompleteEvent event){
-
-    }
-
+public class EffectStorage{
+    public static final Map<EntityLivingBase,EffectMarker> effectMap = Maps.newHashMap();
 }

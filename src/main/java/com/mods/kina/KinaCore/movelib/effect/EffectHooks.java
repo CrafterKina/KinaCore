@@ -25,35 +25,32 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.mods.kina.KinaCore.misclib.base.fle;
+package com.mods.kina.KinaCore.movelib.effect;
 
-import net.minecraftforge.fml.common.event.*;
+import com.mods.kina.KinaCore.misclib.base.fle.AbstractFMLStateEvent;
+import com.mods.kina.KinaCore.movelib.effect.render.gui.GuiHooks;
+import com.mods.kina.KinaCore.movelib.effect.storage.EffectMarker;
+import com.mods.kina.KinaCore.movelib.effect.storage.EffectStorage;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public abstract class AbstractFMLStateEvent implements IFMLStateEvents{
-
-    @Override
-    public void construction(FMLConstructionEvent event){
-
-    }
-
+public class EffectHooks extends AbstractFMLStateEvent{
     @Override
     public void preInit(FMLPreInitializationEvent event){
-
+        MinecraftForge.EVENT_BUS.register(new GuiHooks());
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @Override
-    public void init(FMLInitializationEvent event){
-
+    @SubscribeEvent
+    public void onLivingSpawn(LivingSpawnEvent event){
+        EffectStorage.effectMap.put(event.entityLiving, new EffectMarker());
     }
 
-    @Override
-    public void postInit(FMLPostInitializationEvent event){
-
+    @SubscribeEvent
+    public void onLivingDeath(LivingDeathEvent event){
+        EffectStorage.effectMap.remove(event.entityLiving);
     }
-
-    @Override
-    public void complete(FMLLoadCompleteEvent event){
-
-    }
-
 }

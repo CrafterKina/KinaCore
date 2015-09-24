@@ -25,35 +25,26 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.mods.kina.KinaCore.misclib.base.fle;
+package com.mods.kina.KinaCore.movelib.effect;
 
-import net.minecraftforge.fml.common.event.*;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class AbstractFMLStateEvent implements IFMLStateEvents{
+public interface IEffect{
+    @SideOnly(Side.CLIENT)
+    void renderInventoryEffect(int x, int y);
 
-    @Override
-    public void construction(FMLConstructionEvent event){
+    void onUpdate(EntityLivingBase living);
 
+    void performEffect(EntityLivingBase entityIn);
+
+    void combine(IEffect other);
+
+    //void
+
+    interface IEffectFactory{
+        IEffect getEffect(EntityLivingBase target, NBTTagCompound nbt);
     }
-
-    @Override
-    public void preInit(FMLPreInitializationEvent event){
-
-    }
-
-    @Override
-    public void init(FMLInitializationEvent event){
-
-    }
-
-    @Override
-    public void postInit(FMLPostInitializationEvent event){
-
-    }
-
-    @Override
-    public void complete(FMLLoadCompleteEvent event){
-
-    }
-
 }

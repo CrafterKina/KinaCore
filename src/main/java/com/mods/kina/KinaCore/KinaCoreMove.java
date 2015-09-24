@@ -38,10 +38,11 @@ import java.util.List;
 
 @Mod(modid = "kina_misc", guiFactory = "com.mods.kina.KinaCore.movelib.gui.KinaCoreGuiFactory")
 public class KinaCoreMove implements IFMLStateEvents{
-    private List<IFMLStateEvents> handlers;
+    private List<? extends IFMLStateEvents> handlers;
 
+    @Mod.EventHandler
     public void construction(FMLConstructionEvent event){
-        handlers = Collections.unmodifiableList(Lists.newArrayList(new O18nHooks()));
+        handlers = Collections.unmodifiableList(Lists.newArrayList(new O18nHooks()/*,new EffectHooks()*/));
         for(IFMLStateEvents handler : handlers){
             handler.construction(event);
         }
@@ -68,6 +69,7 @@ public class KinaCoreMove implements IFMLStateEvents{
         }
     }
 
+    @Mod.EventHandler
     public void complete(FMLLoadCompleteEvent event){
         for(IFMLStateEvents handler : handlers){
             handler.complete(event);
